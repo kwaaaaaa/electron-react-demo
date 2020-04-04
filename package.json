@@ -1,0 +1,67 @@
+{
+  "name": "demo-electron",
+  "version": "0.0.1",
+  "main": "electron.js",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js",
+    "prod": "webpack --config webpack.build.config.js && electron --noDevServer .",
+    "rebuild": "node_modules/.bin/electron-rebuild",
+    "build": "webpack --config webpack.build.config.js",
+    "postinstall": "electron-builder install-app-deps",
+    "dist": "electron-builder -w"
+  },
+  "dependencies": {
+    "electron-is-dev": "^1.1.0",
+    "node-ipc": "^9.1.1",
+    "purecss": "^1.0.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-icons": "^3.9.0",
+    "react-modal": "^3.11.2",
+    "react-redux": "^7.1.3",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
+    "@babel/plugin-transform-react-jsx": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.2",
+    "electron": "^7.1.11",
+    "electron-builder": "^22.3.2",
+    "electron-rebuild": "^1.10.0",
+    "electron-store": "^5.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "style-loader": "^1.1.3",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "build": {
+    "appId": "com.company.test",
+    "productName": "Demo Electron!",
+    "copyright": "Copyright © 2020",
+    "files": [
+      "build/**/*",
+      "src/ipc/**/*",
+      "src/const/**/*",
+      "node_modules/**/*",
+      "window.js",
+      "electron.js"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "nsis": {
+      "artifactName": "${productName}-${os}.${ext}"
+    }
+  }
+}
