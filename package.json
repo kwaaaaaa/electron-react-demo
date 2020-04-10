@@ -1,6 +1,6 @@
 {
   "name": "demo-electron",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "main": "electron.js",
   "license": "MIT",
   "engines": {
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "electron-is-dev": "^1.1.0",
+    "electron-updater": "^4.2.5",
     "node-ipc": "^9.1.1",
     "purecss": "^1.0.1",
     "react": "^16.12.0",
@@ -40,7 +41,6 @@
     "electron": "^8.2.1",
     "electron-builder": "^22.4.1",
     "electron-rebuild": "^1.10.1",
-    "electron-updater": "^4.2.5",
     "electron-store": "^5.1.1",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.9.0",

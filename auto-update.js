@@ -1,3 +1,4 @@
+const { dialog } = require("electron");
 const { autoUpdater } = require("electron-updater");
 
 function initAutoUpdater(win) {
