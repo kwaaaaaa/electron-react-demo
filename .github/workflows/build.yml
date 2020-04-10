@@ -26,23 +26,6 @@ jobs:
         with:
           node-version: 12
 
-      - name: Get npm cache directory
-        id: npm-cache
-        run: |
-          echo "::set-output name=dir::$(npm config get cache)"
-
-      - name: Cache node modules
-        uses: actions/cache@v1.1.2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ${{ steps.npm-cache.outputs.dir }}
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-          
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1.3.0
         with:
