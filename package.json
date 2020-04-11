@@ -1,6 +1,6 @@
 {
   "name": "demo-electron",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "main": "electron.js",
   "license": "MIT",
   "engines": {
@@ -12,10 +12,14 @@
     "rebuild": "node_modules/.bin/electron-rebuild",
     "build": "webpack --config webpack.build.config.js",
     "postinstall": "electron-builder install-app-deps",
-    "dist": "electron-builder -w"
+    "electron:all": "npm run build && electron-builder build --mwl",
+    "electron:linux": "npm run build && electron-builder build --linux",
+    "electron:windows": "npm run build && electron-builder build --windows",
+    "electron:mac": "npm run build && electron-builder build --mac"
   },
   "dependencies": {
     "electron-is-dev": "^1.1.0",
+    "electron-updater": "^4.2.5",
     "node-ipc": "^9.1.1",
     "purecss": "^1.0.1",
     "react": "^16.12.0",
@@ -34,10 +38,10 @@
     "@babel/preset-react": "^7.8.3",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.4.2",
-    "electron": "^7.1.11",
-    "electron-builder": "^22.3.2",
-    "electron-rebuild": "^1.10.0",
-    "electron-store": "^5.1.0",
+    "electron": "^8.2.1",
+    "electron-builder": "^22.4.1",
+    "electron-rebuild": "^1.10.1",
+    "electron-store": "^5.1.1",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.9.0",
     "style-loader": "^1.1.3",
@@ -55,13 +59,44 @@
       "src/const/**/*",
       "node_modules/**/*",
       "window.js",
+      "auto-update.js",
       "electron.js"
     ],
     "directories": {
+      "output": "release/",
       "buildResources": "assets"
     },
-    "nsis": {
-      "artifactName": "${productName}-${os}.${ext}"
-    }
+    "win": {
+      "icon": "dist",
+      "artifactName": "${productName}-${version}.${ext}",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "mac": {
+      "category": "public.app-category.utilities",
+      "icon": "dist",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "linux": {
+      "icon": "dist",
+      "category": "Utility",
+      "target": [
+        "AppImage"
+      ]
+    },
+    "publish": [
+      {
+        "provider": "github"
+      }
+    ]
   }
 }
